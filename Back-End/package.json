@@ -7,10 +7,14 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "helmet": "^8.0.0",
+    "hpp": "^0.2.3",
     "jsonwebtoken": "^9.0.2",
     "module-alias": "^2.2.3",
     "mongoose": "^8.9.2",
-    "nodemon": "^3.1.9"
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.9",
+    "winston": "^3.17.0",
+    "ws": "^8.18.0"
   },
   "scripts": {
     "start": "nodemon ."
