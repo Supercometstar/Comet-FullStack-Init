@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const nodemailer = require('nodemailer')
 
 exports.log = (_) => {
 	console.log(_)
@@ -15,6 +16,7 @@ class AppError extends Error {
 	constructor(message, statusCode) {
 		super(message)
 		this.statusCode = statusCode
+		this.status = statusCode.toString().startsWith('4')?'fail':'error'
 		this.isOperational = true
 
 		Error.captureStackTrace(this, this.constructor)
@@ -43,7 +45,7 @@ exports.errorHandler = (err, req, res, next) => {
 
 	res.status(statusCode).json({
 		success: false,
-		error: message
+		message
 	})
 
 }
@@ -58,3 +60,15 @@ exports.createToken = (id) => {
 		expiresIn: process.env.JWT_EXPIRES_IN
 	})
 }
+
+exports.parseToken = (token) => {
+	return jwt.verify(token, process.env.JWT_SECRET)
+}
+
+exports.transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth: {
+		user: process.env.EMAIL_USER,
+		pass: process.env.EMAIL_PASS,
+	}
+})

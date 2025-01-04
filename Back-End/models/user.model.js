@@ -18,7 +18,12 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: [true, 'Password is required.'],
 		minlength: [8, 'Password must be at least 8 characters long.']
-	}
+	},
+	isVerified: Boolean,
+	verificationCode: String,
+	verificationCodeExpires: Date,
+	passwordResetToken: String,
+	passwordResetTokenExpires: Date
 },{
 	timestamps: true
 })
@@ -35,7 +40,7 @@ userSchema.pre('save', async function (next) {
 })
 
 userSchema.methods.comparePassword = async function (candidatePassword) {
-	return bcrypt.compate(candidatePassword, this.password)
+	return bcrypt.compare(candidatePassword, this.password)
 }
 
 const User = mongoose.model('User', userSchema)

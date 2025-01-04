@@ -1,1 +1,1 @@
-export const baseURL = `${window.location.hostname}:2083`
+export const baseURL = `http://${window.location.hostname}:1006`

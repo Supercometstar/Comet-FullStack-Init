@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import { AuthInputGroup } from '@components'
@@ -28,6 +28,7 @@ const SignIn = () => {
 			<AuthInputGroup label='Email' type='email' info={signInInfo} setInfo={setSignInInfo} />
 			<AuthInputGroup label='Password' type='password' info={signInInfo} setInfo={setSignInInfo} />
 			<button onClick={handleSignIn}>Sign In</button>
+			<Link to='/auth/sign-up'>Go to Sign up</Link>
 		</div>
 	)
 }
